@@ -7,7 +7,7 @@ const searchDay = document.querySelector('#day')
 submitButton.addEventListener('click', (event) => {
     event.preventDefault();
     let day = searchDay.value;
-    getList(day)
+    getList(day.toUpperCase())
 })
 
 const SUN = [
@@ -129,16 +129,16 @@ function getList(day){
     date_today.textContent = "";
     let to_day = ''
 
-    if (day=='SUN'){
+    if (day=='SUN' || day=='SUNDAY'){
         to_day = SUN
     }
-    else if(day=='MON'){
+    else if(day=='MON' || day=='MONDAY'){
         to_day = MON
     }
-    else if(day=='WED'){
+    else if(day=='WED' || day=='WEDNESDAY'){
         to_day = WED;
     }
-    else if(day=='FRI'){
+    else if(day=='FRI' || day=='FRIDAY'){
         to_day = FRI;
     }
 
