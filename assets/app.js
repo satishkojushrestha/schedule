@@ -1,6 +1,14 @@
 const classList = document.querySelector('#classList');
 const date = new Date();
-const date_today = document.querySelector('#date')
+const date_today = document.querySelector('#date');
+const submitButton = document.querySelector('#submitButton');
+const searchDay = document.querySelector('#day')
+
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    let day = searchDay.value;
+    getList(day)
+})
 
 const SUN = [
     {
@@ -87,6 +95,55 @@ function displayList(){
     }
 
     date_today.textContent = `Today: ${day_string}`
+
+    var index=0;
+    if (to_day){
+        for (let classes of to_day){
+        
+            let classStringHTML = `<div class="box animation-back">
+                <div class="flex-item">
+                    <h3>${classes.time}</h3>
+                    <h3>${classes.class}</h3>
+                    <h3>${classes.teacher}</h3>
+                    <h3>${classes.sections}</h3>
+                </div>
+            </div>`;
+            index+=1;
+    
+            classList.innerHTML += classStringHTML;
+            
+        }
+    }
+    else{
+        let classStringHTML = `<h2 class="flex-item">Whoo No Class</h2>`;
+        classList.innerHTML += classStringHTML;
+        console.log("condition stsf")
+    }
+    
+    
+}
+
+
+function getList(day){
+    classList.innerHTML="";
+    date_today.textContent = "";
+    let to_day = ''
+
+    if (day=='SUN'){
+        to_day = SUN
+    }
+    else if(day=='MON'){
+        to_day = MON
+    }
+    else if(day=='WED'){
+        to_day = WED;
+    }
+    else if(day=='FRI'){
+        to_day = FRI;
+    }
+
+
+    date_today.textContent = `Day Selected: ${day}`
 
     var index=0;
     if (to_day){
