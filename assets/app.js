@@ -3,6 +3,22 @@ const date = new Date();
 const date_today = document.querySelector('#date');
 const submitButton = document.querySelector('#submitButton');
 const searchDay = document.querySelector('#day')
+const days_in_week = [
+    'SUN',
+    'MON',
+    'TUE',
+    'WED',
+    'THU',
+    'FRI',
+    'SAT',
+    'SUNDAY',
+    'MONDAY',
+    'TUESDAY',
+    'WEDNESDAY',
+    'THURSDAY',
+    'FRIDAY',
+    'SATURDAY'
+]
 
 submitButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -129,46 +145,54 @@ function getList(day){
     date_today.textContent = "";
     let to_day = ''
 
-    if (day=='SUN' || day=='SUNDAY'){
-        to_day = SUN
-    }
-    else if(day=='MON' || day=='MONDAY'){
-        to_day = MON
-    }
-    else if(day=='WED' || day=='WEDNESDAY'){
-        to_day = WED;
-    }
-    else if(day=='FRI' || day=='FRIDAY'){
-        to_day = FRI;
-    }
+    const checkday = days_in_week.includes(day)
+    if (checkday){
 
-
-    date_today.textContent = `Day Selected: ${day}`
-
-    var index=0;
-    if (to_day){
-        for (let classes of to_day){
-        
-            let classStringHTML = `<div class="box animation-back">
-                <div class="flex-item">
-                    <h3>${classes.time}</h3>
-                    <h3>${classes.class}</h3>
-                    <h3>${classes.teacher}</h3>
-                    <h3>${classes.sections}</h3>
-                </div>
-            </div>`;
-            index+=1;
+        if (day=='SUN' || day=='SUNDAY'){
+            to_day = SUN
+        }
+        else if(day=='MON' || day=='MONDAY'){
+            to_day = MON
+        }
+        else if(day=='WED' || day=='WEDNESDAY'){
+            to_day = WED;
+        }
+        else if(day=='FRI' || day=='FRIDAY'){
+            to_day = FRI;
+        }
     
-            classList.innerHTML += classStringHTML;
+    
+        date_today.textContent = `Day Selected: ${day}`
+    
+        var index=0;
+        if (to_day){
+            for (let classes of to_day){
             
+                let classStringHTML = `<div class="box animation-back">
+                    <div class="flex-item">
+                        <h3>${classes.time}</h3>
+                        <h3>${classes.class}</h3>
+                        <h3>${classes.teacher}</h3>
+                        <h3>${classes.sections}</h3>
+                    </div>
+                </div>`;
+                index+=1;
+        
+                classList.innerHTML += classStringHTML;
+                
+            }
+        }
+        else{
+            let classStringHTML = `<h2 class="flex-item">Whoo No Class</h2>`;
+            classList.innerHTML += classStringHTML;
+            console.log("condition stsf")
         }
     }
+
     else{
-        let classStringHTML = `<h2 class="flex-item">Whoo No Class</h2>`;
+        let classStringHTML = `<h2 class="flex-item">There is no such day as ${day}</h2>`;
         classList.innerHTML += classStringHTML;
         console.log("condition stsf")
     }
-    
-    
 }
 
