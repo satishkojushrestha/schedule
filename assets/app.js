@@ -23,7 +23,8 @@ const days_in_week = [
 submitButton.addEventListener('click', (event) => {
     event.preventDefault();
     let day = searchDay.value;
-    getList(day.toUpperCase())
+    getList(day.toUpperCase());
+    searchDay.value='';
 })
 
 const SUN = [
